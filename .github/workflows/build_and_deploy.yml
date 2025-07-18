@@ -8,10 +8,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      deployments: write
+      pages: write
       id-token: write
-      packages: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -25,3 +23,7 @@ jobs:
           path: src/.observablehq/cache
           key: data-${{ hashFiles('src/*') }}
       - run: yarn build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/
+      - uses: actions/deploy-pages@v4
