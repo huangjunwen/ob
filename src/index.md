@@ -1,5 +1,5 @@
 # ObNotebooks
 
-This is the home page of your new Observable Framework app.
+个人 Observable Notebooks
 
 For more, see <https://observablehq.com/framework/getting-started>.
