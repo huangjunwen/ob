@@ -1,0 +1,27 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+      id-token: write
+      packages: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'yarn'
+      - run: yarn --frozen-lockfile
+      - id: cache-data
+        uses: actions/cache@v4
+        with:
+          path: src/.observablehq/cache
+          key: data-${{ hashFiles('src/*') }}
+      - run: yarn build
