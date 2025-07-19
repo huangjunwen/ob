@@ -23,6 +23,7 @@ export default {
   root: "src",
 
   // Some additional configuration options and their defaults:
+  // theme: "light", // try "light", "dark", "slate", etc.
   theme: "cotton", // try "light", "dark", "slate", etc.
   // header: "", // what to show in the header (HTML)
   // footer: "Built with Observable.", // what to show in the footer (HTML)
