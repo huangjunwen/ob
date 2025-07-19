@@ -6,7 +6,7 @@
 import { JXG, drawJXG } from "./components/useJXG.js";
 ```
 
-一个简单的例子
+## 一个简单的例子
 
 ```js echo
 drawJXG((box) => {
@@ -18,7 +18,7 @@ drawJXG((box) => {
 }, { boxAspectRatio: "2/1", boxWidth: "80%" })
 ```
 
-一个稍微复杂的例子 [Two Squares](https://jsxgraph.org/wiki/index.php?title=Two_squares)
+## 一个稍微复杂的例子 [Two Squares](https://jsxgraph.org/wiki/index.php?title=Two_squares)
 
 ```js echo
 drawJXG((box) => {
@@ -42,7 +42,7 @@ drawJXG((box) => {
 }, { boxAspectRatio: "4/3", boxWidth: "60%" })
 ```
 
-三维的例子 [3D parametric surface: Klein bottle](https://jsxgraph.uni-bayreuth.de/share/example/3d-parametric-surface-klein-bottle)
+## 三维的例子 [3D parametric surface: Klein bottle](https://jsxgraph.uni-bayreuth.de/share/example/3d-parametric-surface-klein-bottle)
 
 ```js echo
 
@@ -85,4 +85,27 @@ drawJXG((box) => {
   );
 
 }, { boxWidth: "60%" })
+```
+
+## DSL 例子 [JessieCode](https://jsxgraph.uni-bayreuth.de/wp/docs_jessiecode/)
+
+```js echo
+drawJXG((box) => {
+  var board = JXG.JSXGraph.initBoard(box, {
+    boundingbox: [-8, 8, 8, -8],
+    keepaspectratio: false,
+    axis: true
+  });
+  board.jc.snippet(jcText, false)
+})
+```
+
+```js echo
+const jcText = view(Inputs.textarea({
+  label: "JessieCode",
+  value: [
+    "S = functiongraph(function(x) { return sin(x) * x; } ) <<strokeColor: 'red' >>;",
+    "C = functiongraph(function(x) { return cos(x) * x; } ) <<strokeColor: 'blue' >>;",
+  ].join("\n")
+}));
 ```

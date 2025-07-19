@@ -9,7 +9,8 @@ await new Promise((resolve) => {
   document.head.appendChild(link)
 })
 
-const drawJXG = (drawFunc, { boxAspectRatio = "1/1", boxWidth = "100%" }) => {
+const drawJXG = (drawFunc, ...[opt]) => {
+  const { boxAspectRatio = "1/1", boxWidth = "50%" } = opt || {}
   // A uniq id for the div
   const boxId = `jsx_board_${Math.floor(Math.random() * 100000)}`
   const box = document.createElement("div")
