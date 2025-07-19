@@ -1,45 +1,27 @@
-# JSXGraph 例子
+# JSXGraph 使用例子
 
-首先引入 css/js
-
-```js echo
-import { default as JXG } from "npm:jsxgraph@1.11.1";
-```
-
-```html echo
-<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jsxgraph/1.11.1/jsxgraph.css" />
-```
-
-然后定义一个公共函数用于创建画板
+首先引入 component，它会载入 JSXGraph 以及相关联的 css，以及定义工具函数：drawJXG
 
 ```js echo
-const drawOnBox = (drawFunc, boxAspectRatio="1/1", boxWidth="100%") => {
-  const boxId = `jsx_board_${Math.floor(Math.random() * 100000)}`
-  const box = document.createElement("div");
-  box.id = boxId
-  box.style.width = boxWidth;
-  box.style.aspectRatio = boxAspectRatio;
-  drawFunc(box)
-  return box
-}
+import { JXG, drawJXG } from "./components/useJXG.js";
 ```
 
 一个简单的例子
 
 ```js echo
-drawOnBox((box) => {
+drawJXG((box) => {
   var board = JXG.JSXGraph.initBoard(box, {
     boundingbox: [-5, 2, 5, -2],
     axis:true,
   });
   board.create('functiongraph', ['sin(x)']);
-}, "2/1", "80%")
+}, { boxAspectRatio: "2/1", boxWidth: "80%" })
 ```
 
 一个稍微复杂的例子 [Two Squares](https://jsxgraph.org/wiki/index.php?title=Two_squares)
 
 ```js echo
-drawOnBox((box) => {
+drawJXG((box) => {
   var board = JXG.JSXGraph.initBoard(box, {
     boundingbox: [-4, 3, 4, -3],
   });
@@ -57,14 +39,14 @@ drawOnBox((box) => {
       p = board.create('line', [A, H]),
 	    q = board.create('line', [E, C]);
 
-}, "4/3", "60%")
+}, { boxAspectRatio: "4/3", boxWidth: "60%" })
 ```
 
 三维的例子 [3D parametric surface: Klein bottle](https://jsxgraph.uni-bayreuth.de/share/example/3d-parametric-surface-klein-bottle)
 
 ```js echo
 
-drawOnBox((box) => {
+drawJXG((box) => {
   var board = JXG.JSXGraph.initBoard(box, {
     boundingbox: [-8, 8, 8, -8],
     keepaspectratio: false,
@@ -102,5 +84,5 @@ drawOnBox((box) => {
     }
   );
 
-}, "1/1", "60%")
+}, { boxWidth: "60%" })
 ```
